@@ -1,5 +1,5 @@
 import random
-
+from time import sleep
 
 #initiate the values for the deck of cards here
 deckVals = []
@@ -62,10 +62,13 @@ if getStarted == "Y":
     print("Your First Card is:")
     deal_card_player()
     deal_card_dealer()
+    sleep(1)
     print("Your Second Card is:")
     deal_card_player()
     deal_card_dealer()
+    sleep(1)
     print("Your current score is: " + str(playerScore))
+    sleep(1)
     print("The dealer is showing a " + dealerHand[0])
 
 takeHit = input("Would you like another card?   ")
@@ -76,6 +79,31 @@ while takeHit =="Y":
         print("You Busted!")
         break
     takeHit = input("Would you like another card?  ")
+
+if dealerScore >= dealerLimit:
+    print("The dealer stays on " + str(dealerScore))
+while dealerScore < dealerLimit:
+    deal_card_dealer()
+    print("The dealer takes a hit!")
+    sleep(1)
+    if dealerScore > 21:
+        print("Dealer busts!")
+        break
+    elif dealerScore >= dealerLimit and dealerScore <= 21:
+        print("The dealer stays on " + str(dealerScore))
+
+if playerScore > dealerScore and playerScore <= 21:
+    print("Congratulations! You Won")
+elif playerScore > 21:
+    print("You Lost")
+elif dealerScore>= playerScore and dealerScore<= 21:
+    print("Dealer Won")
+else:
+    print("You won!")
+
+
+
+
     
         
 
